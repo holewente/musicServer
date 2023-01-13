@@ -1,5 +1,9 @@
 import mysql from 'mysql';
 import bcrypt from 'bcryptjs';
+import { configDB } from '../configDB.js';
+const db=mysql.createConnection(configDB)
+//import {upload,removeFromCloud} from '../cloudinary.js'
+import fs from 'fs';
 
 export const login=(request,response)=>{
     console.log(request.body)
@@ -8,7 +12,8 @@ export const login=(request,response)=>{
         if(err)
             console.log('hibás!',err)
         else{
-            bcrypt.compare(password,result[0].password,(err,resultCompare)=>{
+            console.log(result[0].password.length)
+            bcrypt.compare(password,result[0].password.trim(),(err,resultCompare)=>{
                 if(err)
                     response.send({error:"hibás jelszó"})
                 if(resultCompare){
