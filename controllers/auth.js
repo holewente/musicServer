@@ -61,6 +61,7 @@ export const checkUsername=(request,response)=>{
 const saltRound=10
 
 export const register=(request, response)=>{
+    console.log(request.body)
     const {username,email,password} = request.body
     bcrypt.hash(password,saltRound,(err,hashedPassword)=>{
         if(err)
