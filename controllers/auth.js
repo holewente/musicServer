@@ -2,7 +2,7 @@ import mysql from 'mysql';
 import bcrypt from 'bcryptjs';
 import { configDB } from '../configDB.js';
 const db=mysql.createConnection(configDB)
-//import {upload,removeFromCloud} from '../cloudinary.js'
+import {upload,removeFromCloud} from '../cloudinary.js'
 import fs from 'fs';
 
 export const login=(request,response)=>{
