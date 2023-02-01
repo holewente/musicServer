@@ -4,6 +4,7 @@ import { configDB } from '../configDB.js';
 const db=mysql.createConnection(configDB)
 //import {upload,removeFromCloud} from '../cloudinary.js'
 import fs from 'fs';
+import { url } from 'inspector';
 
 export const login=(request,response)=>{
     console.log(request.body)
@@ -144,3 +145,40 @@ export const changePassword=(request, response)=>{
     })
     
 }
+/*export const uploadURL=(request, response)=>{
+    const {url} = request.body
+    bcrypt.hash(url,saltRound,(err,hashedUrl)=>{
+        if(err)
+            console.log('bcrypt hibás!',err)
+        else{console.log(hashedUrl)
+            db.put('update library set url=?',
+            [hashedUrl,url],(err,result)=>{
+                if(err){
+                    console.log('hiba az insertnél',err)
+                    response.send({msg:"URL upload error."})
+                }else
+                    response.send({msg:"URL upload successful!"})
+            })
+        }
+    })
+    
+}
+
+export const uploadTitle=(request, response)=>{
+    const {title} = request.body
+    bcrypt.hash(title,saltRound,(err,hashedTitle)=>{
+        if(err)
+            console.log('bcrypt hibás!',err)
+        else{console.log(hashedTitle)
+            db.put('update library set title=?',
+            [hashedTitle,title],(err,result)=>{
+                if(err){
+                    console.log('hiba az insertnél',err)
+                    response.send({msg:"Title upload error."})
+                }else
+                    response.send({msg:"Title upload successful!"})
+            })
+        }
+    })
+    
+}*/
