@@ -4,7 +4,7 @@ import { configDB } from '../configDB.js';
 const db=mysql.createConnection(configDB)
 import {upload,removeFromCloud} from '../cloudinary.js'
 import fs from 'fs';
-import { url } from 'inspector';
+//import { url } from 'inspector';
 
 export const login=(request,response)=>{
     console.log(request.body)
