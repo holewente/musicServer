@@ -3,12 +3,15 @@ import { configDB } from '../configDB.js';
 const db=mysql.createConnection(configDB)
 
 export const addMusic=(request,response)=>{
-    const {url,title}=request.body
-    db.query('insert into library (url,title) values (?,?)',[url,title],(err,result)=>{
+    const {url,title,categ_id}=request.body
+    db.query('insert into library (url,title,categ_id) values (?,?,?)',[url,title,categ_id],(err,result)=>{
         if(err)
             console.log('hiba:',err)
-        else
-            response.send(result)
+        else{
+            console.log("oké")
+            response.send({msg:result.affectedRows})
+        }
+            
     })
 }
 export const getCateg=(request,response)=>{
