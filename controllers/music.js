@@ -22,3 +22,11 @@ export const getCateg=(request,response)=>{
             response.send(result)
     })
 }
+export const getUrl=(request,response)=>{
+    db.query('select * from library',(err,result)=>{
+        if(err)
+            console.log('hiba:',err)
+        else
+            response.send(result)
+    })
+}
