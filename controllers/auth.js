@@ -145,6 +145,15 @@ export const changePassword=(request, response)=>{
     })
     
 }
+
+export const getUsers=(request, response)=>{
+            db.query('select * from users', (err,result)=>{
+                if(err){
+                    console.log('hiba az insertnél',err)
+                }else
+                    response.send(result)
+            })
+        }
 /*export const uploadURL=(request, response)=>{
     const {url} = request.body
     bcrypt.hash(url,saltRound,(err,hashedUrl)=>{
