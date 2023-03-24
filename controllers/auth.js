@@ -114,16 +114,15 @@ const removeTMPfiles=path=>{
 }
 
 export const deleteUser=(request,response)=>{
-    console.log(request.body)
-    const{username,avatar_id}=request.body
-    console.log('törlendő:',username,avatar_id,'-----')
-    db.query('delete FROM `users` WHERE username=?',[username],(err,result)=>{
+    const{id}=request.params
+    console.log('törlendő:',id,'-----')
+    db.query('delete FROM `users` WHERE id=?',[id],(err,result)=>{
         if(err)
             console.log('hibás!',err)
         else
             console.log("törlés:",result)
-            avatar_id && removeFromCloud(avatar_id)
-            response.send({msg:'Sikeresen törölte a fiókját!',username:username})
+            /*avatar_id && removeFromCloud(avatar_id)*/
+            response.send({msg:'Sikeresen törölte a fiókját!',id:id})
     })
 }
 

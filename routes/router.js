@@ -8,7 +8,7 @@ router.route('/register').post(register)
 router.route('/checkEmail').post(checkEmail)
 router.route('/checkUsername').post(checkUsername)
 router.route('/updateAvatar').post(updateAvatar)
-router.route('/deleteUser').delete(deleteUser)
+router.route('/deleteUser/:id').get(deleteUser)
 router.route('/changePassword').put(changePassword)
 router.route('/users').get(getUsers)
 
