@@ -11,4 +11,3 @@ router.route('/updateAvatar').post(updateAvatar)
 router.route('/deleteUser/:id').get(deleteUser)
 router.route('/changePassword').put(changePassword)
 router.route('/users').get(getUsers)
-
