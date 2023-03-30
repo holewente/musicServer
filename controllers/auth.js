@@ -153,6 +153,21 @@ export const getUsers=(request, response)=>{
                     response.send(result)
             })
         }
+
+
+        export const addFavorite=(request,response)=>{
+            console.log(request.body)
+            const{user_id,link_url}=request.body
+            db.query('INSERT into favorites values (null,?,?)',[user_id,link_url],(err,result)=>{
+                if(err)
+                    console.log('hibás!',err)
+                else
+                    response.send(result)
+            })
+        }
+
+
+
 /*export const uploadURL=(request, response)=>{
     const {url} = request.body
     bcrypt.hash(url,saltRound,(err,hashedUrl)=>{
