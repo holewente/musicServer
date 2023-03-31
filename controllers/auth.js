@@ -158,12 +158,20 @@ export const getUsers=(request, response)=>{
         export const addFavorite=(request,response)=>{
             console.log(request.body)
             const{user_id,link_url}=request.body
-            db.query('INSERT into favorites values (null,?,?)',[user_id,link_url],(err,result)=>{
+            db.query('SELECT count(*) nr from favorites where link_url=?',[link_url],(err,result)=>{
+                if(err)
+                    console.log('hibás!',err)
+                else
+                    console.log(result[0].nr)
+            
+            
+            result[0].nr==0 && db.query('INSERT into favorites values (null,?,?)',[user_id,link_url],(err,result)=>{
                 if(err)
                     console.log('hibás!',err)
                 else
                     response.send(result)
             })
+        })
         }
 
 
