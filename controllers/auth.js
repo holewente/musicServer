@@ -174,6 +174,17 @@ export const getUsers=(request, response)=>{
         })
         }
 
+        export const getFavorites=(request,response)=>{
+            const{user_id}=request.params
+            console.log('felhasználó:',user_id,'-----')
+            db.query('SELECT favorites.id,favorites.link_url,library.title from favorites,library where favorites.link_url=library.url and favorites.user_id=?',[user_id],(err,results)=>{
+                if(err)
+                    console.log('hibás!',err)
+                else
+                    response.send(results)
+            })
+        }
+
 
 
 /*export const uploadURL=(request, response)=>{
