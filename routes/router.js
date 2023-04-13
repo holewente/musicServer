@@ -1,7 +1,7 @@
 import express from 'express';
 export const router=express.Router();
 
-import {login,register,checkEmail,checkUsername,updateAvatar,deleteUser,changePassword,getUsers,addFavorite,getFavorites} from '../controllers/auth.js'
+import {login,register,checkEmail,checkUsername,updateAvatar,deleteUser,changePassword,getUsers,addFavorite,getFavorites,deleteFavorite} from '../controllers/auth.js'
 
 router.route('/login').post(login)
 router.route('/register').post(register)
@@ -13,3 +13,4 @@ router.route('/changePassword').put(changePassword)
 router.route('/users').get(getUsers)
 router.route('/addFavorite').post(addFavorite)
 router.route('/getFavorites/:user_id').get(getFavorites)
+router.route('/deleteFavorite/:id').get(deleteFavorite)

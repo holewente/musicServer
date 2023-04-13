@@ -126,6 +126,19 @@ export const deleteUser=(request,response)=>{
     })
 }
 
+export const deleteFavorite=(request,response)=>{
+    const{id}=request.params
+    console.log('törlendő:',id,'-----')
+    db.query('delete FROM `favorites` WHERE id=?',[id],(err,result)=>{
+        if(err)
+            console.log('hibás!',err)
+        else
+            console.log("törlés:",result)
+            /*avatar_id && removeFromCloud(avatar_id)*/
+            response.send({msg:'Song successfully removed from your favorites',id:id})
+    })
+}
+
 export const changePassword=(request, response)=>{
     const {password,username} = request.body
     bcrypt.hash(password,saltRound,(err,hashedPassword)=>{
