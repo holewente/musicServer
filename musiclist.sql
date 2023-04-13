@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2023 at 01:16 PM
+-- Generation Time: Apr 13, 2023 at 12:37 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,10 +62,9 @@ CREATE TABLE `favorites` (
 --
 
 INSERT INTO `favorites` (`id`, `user_id`, `link_url`) VALUES
-(1, 1, 'https://www.youtube-nocookie.com/watch?v=U3ASj1L6_sY'),
-(8, 1, 'https://soundcloud.com/lilyeat/not-sorry-prod-trgc-x-sharkboy'),
-(9, 3, 'https://www.youtube.com/watch?v=vcAp4nmTZCA'),
-(10, 3, 'https://soundcloud.com/trippie-hippie-2/ghostbusters');
+(11, 1, 'https://www.youtube-nocookie.com/watch?v=U3ASj1L6_sY'),
+(16, 1, 'https://www.youtube.com/watch?v=vcAp4nmTZCA'),
+(17, 1, 'https://soundcloud.com/trippie-hippie-2/ghostbusters');
 
 -- --------------------------------------------------------
 
@@ -132,13 +131,15 @@ ALTER TABLE `category`
 --
 ALTER TABLE `favorites`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `link_url` (`link_url`);
 
 --
 -- Indexes for table `library`
 --
 ALTER TABLE `library`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `url` (`url`),
   ADD KEY `categ_id` (`categ_id`);
 
 --
@@ -161,7 +162,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `library`
@@ -183,7 +184,8 @@ ALTER TABLE `users`
 -- Constraints for table `favorites`
 --
 ALTER TABLE `favorites`
-  ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`link_url`) REFERENCES `library` (`url`);
 
 --
 -- Constraints for table `library`
