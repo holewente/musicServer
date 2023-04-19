@@ -6,5 +6,5 @@ import {addMusic,getCateg,getUrl,deleteMusic,getMusic} from '../controllers/musi
 musicRouter.route('/add').post(addMusic)
 musicRouter.route('/categ').get(getCateg)
 musicRouter.route('/url').get(getUrl)
-musicRouter.route('/deleteMusic/:id').get(deleteMusic)
+musicRouter.route('/deleteMusic/:url').get(deleteMusic)
 musicRouter.route('/library').get(getMusic)

@@ -171,7 +171,7 @@ export const getUsers=(request, response)=>{
         export const addFavorite=(request,response)=>{
             console.log(request.body)
             const{user_id,link_url}=request.body
-            db.query('SELECT count(*) nr from favorites where link_url=?',[link_url],(err,result)=>{
+            db.query('SELECT count(*) nr from favorites where link_url=? and user_id=?',[link_url,user_id],(err,result)=>{
                 if(err)
                     console.log('hibás!',err)
                 else

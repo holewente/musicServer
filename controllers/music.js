@@ -15,17 +15,21 @@ export const addMusic=(request,response)=>{
     })
 }
 export const deleteMusic=(request,response)=>{
-    const{id}=request.params
-    console.log('törlendő:',id,'-----')
-    db.query('delete FROM `library` WHERE id=?',[id],(err,result)=>{
+    const{url}=request.params
+    db.query('delete FROM `favorites` WHERE link_url=?',[url],(err,result)=>{
+        if(err)
+            console.log('hibás!',err)
+        else{
+        
+    db.query('delete FROM `library` WHERE url=?',[url],(err,result)=>{
         if(err)
             console.log('hibás!',err)
         else
             console.log("törlés:",result)
             /*avatar_id && removeFromCloud(avatar_id)*/
-            response.send({msg:'Song successfully deleted from our library.',id:id})
+            response.send({msg:'Song successfully deleted from our library.'})
     })
-}
+    }})}
 export const getCateg=(request,response)=>{
     db.query('select * from category order by genre',(err,result)=>{
         if(err)
